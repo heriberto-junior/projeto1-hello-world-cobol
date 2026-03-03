@@ -19,6 +19,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gnucobol
 
+      - name: List files
+        run: ls -R
+
       - name: Compile COBOL program
         run: cobc -x "projeto1-hello-world-cobol/02_Add.cob" -o "02_Add"
 
