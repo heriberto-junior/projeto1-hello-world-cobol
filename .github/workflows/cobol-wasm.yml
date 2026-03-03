@@ -23,18 +23,18 @@ jobs:
           ./emsdk install latest
           ./emsdk activate latest
           source ./emsdk_env.sh
-          echo "source $PWD/emsdk_env.sh" >> $GITHUB_ENV
+          echo "EMSDK=$PWD" >> $GITHUB_ENV
 
       - name: Compile COBOL to C
         run: cobc -Wall -C SOMA-WASM.cob -o soma.c
 
       - name: Compile C to WebAssembly
         run: |
-          source $GITHUB_ENV
+          source emsdk/emsdk_env.sh
           emcc soma.c -o cobol.js \
             -s MODULARIZE=1 \
             -s EXPORTED_FUNCTIONS=['_main'] \
-            -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap']
+            -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap']            
 
       - name: Prepare site
         run: |
