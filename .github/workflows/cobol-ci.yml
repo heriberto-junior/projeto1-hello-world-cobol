@@ -20,7 +20,7 @@ jobs:
           sudo apt-get install -y gnucobol
 
       - name: Compile COBOL program
-        run: cobc -x "02_Add.cob" -o "02_Add"
+        run: cobc -x "projeto1-hello-world-cobol/02_Add.cob" -o "02_Add"
 
       - name: Execute COBOL program
         run: ./02_Add
